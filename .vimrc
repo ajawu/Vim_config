@@ -1,3 +1,16 @@
+set nocompatible
+" ================ General Config ====================
+"
+"
+set number                      "Line numbers are good
+set backspace=indent,eol,start  "Allow backspace in insert mode
+set history=1000                "Store lots of :cmdline history
+set showcmd                     "Show incomplete cmds down the bottom
+set showmode                    "Show current mode down the bottom
+set visualbell                  "No sounds
+set autoread                    "Reload files changed outside vim
+
+
 " Vim Plug setup
 call plug#begin('~/.vim/plugged')
 " Theme
@@ -32,6 +45,7 @@ Plug 'yuki-ycino/ncm2-dictionary'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets' " Snippets engine for ultisnips
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 
@@ -140,24 +154,19 @@ let g:UltiSnipsUsePythonVersion = 3
 " Set Syntastic checker
 let g:syntastic_python_checkers = ['flake8']
 
-" Airline Settings
-let g:airline_powerline_fonts = 1
-let g:airline_section_y = ""
-let g:airline#extensions#tabline#enabled = 1
 
+" Better search
+set hlsearch
+set incsearch
 
-" Ultisnips settings
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
-" NerdTree Settings
-" Open automatically
+" NERDTree Setup
+" Open by default
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Closing automatically
+let NERDTreeQuitOnOpen = 1
+
+" Delete file buffer when file is deleted
+let NERDTreeAutoDeleteBuffer = 1
 
